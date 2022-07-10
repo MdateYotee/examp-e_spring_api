@@ -1,4 +1,4 @@
-package users.json;
+package com.example.users.json;
 
 import java.time.LocalDateTime;
 

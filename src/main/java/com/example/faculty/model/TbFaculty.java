@@ -1,4 +1,4 @@
-package Faculty.model;
+package com.example.faculty.model;
 
 import java.time.LocalDateTime;
 

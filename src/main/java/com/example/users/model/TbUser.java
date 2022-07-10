@@ -1,10 +1,11 @@
-package users.model;
+package com.example.users.model;
 
 import java.time.LocalDateTime;
 
 import javax.persistence.*;
 
-import Faculty.model.TbFaculty;
+import com.example.faculty.model.TbFaculty;
+
 import lombok.Getter;
 import lombok.Setter;
 

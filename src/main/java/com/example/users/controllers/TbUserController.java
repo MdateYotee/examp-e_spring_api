@@ -1,4 +1,4 @@
-package users.controllers;
+package com.example.users.controllers;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,18 +7,26 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import jdk.jshell.spi.ExecutionControl.UserException;
-import users.json.TbUserJson;
-import users.repository.TbUserRepository;
+import com.example.users.business.TbUserBusiness;
+import com.example.users.exception.UserException;
+import com.example.users.json.TbUserJson;
+import com.example.users.payload.UserPayload;
+import com.example.users.repository.TbUserRepository;
+
 
 @Controller 
-@RequestMapping(path="/user") 
+@RequestMapping("/user") 
 public class TbUserController {
 	@Autowired 
-	private TbUserRepository tbUserRepository;
+	TbUserRepository tbUserRepository;
+	
+	@Autowired
+	TbUserBusiness userBusiness;
 	
 	@GetMapping(path="/")
     public ResponseEntity<TbUserJson> user() throws UserException {
@@ -31,5 +39,13 @@ public class TbUserController {
 		List<TbUserJson> userList = new ArrayList<TbUserJson>();
 	 
         return userList;
+    }
+	
+	@PostMapping("/adduser")
+    public ResponseEntity<Void> adduser(@RequestBody UserPayload userPayload) throws UserException {
+		 
+		userBusiness.addUser(userPayload);
+	 
+        return ResponseEntity.ok().build();
     }
 }

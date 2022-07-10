@@ -1,4 +1,4 @@
-package Faculty.json;
+package com.example.faculty.json;
 
 import java.time.LocalDateTime;
 
