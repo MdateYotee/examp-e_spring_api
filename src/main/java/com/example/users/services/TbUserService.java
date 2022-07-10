@@ -27,7 +27,16 @@ public class TbUserService {
 		return userRepository.save(user);
 	}
 	
+	public TbUser deleteUser(TbUser user) {
+		userRepository.delete(user);
+		return user;
+ 	}
+	
 	public TbUser setUser(UserPayload userPayload, TbUser tbUser) {
+		
+		if(Objects.nonNull(userPayload.getUserId())) {
+			tbUser.setId(userPayload.getUserId());
+		}
 		
 		if(Objects.nonNull(userPayload.getFacultyId())) {
 			TbFaculty faculty = facultyRepository.findOneByfacultyId(userPayload.getFacultyId());
@@ -51,6 +60,7 @@ public class TbUserService {
 	}
 	
 	public void checkNullUser(UserPayload userPayload) throws UserException {
+		
 		if(Objects.isNull(userPayload.getFacultyId())) {
 			throw UserException.userIsFacultyIdNull();
 		}

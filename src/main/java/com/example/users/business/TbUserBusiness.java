@@ -25,4 +25,21 @@ public class TbUserBusiness {
 		 
 	}
 
+	
+	public TbUser updateUser(UserPayload userPayload) throws UserException{
+		
+		 userService.checkNullUser(userPayload);
+		 TbUser user = userService.setUser(userPayload, new TbUser());
+		 
+		return userService.addUser(user);
+		 
+	}
+	
+	public TbUser deleteUser(TbUser user) throws UserException{
+		
+ 
+		return userService.deleteUser(user);
+		 
+	}
+
 }
