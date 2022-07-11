@@ -22,7 +22,7 @@ import com.example.users.repository.TbUserRepository;
 
 
 @Controller 
-@RequestMapping("/") 
+@RequestMapping("/user") 
 public class TbUserController {
 	@Autowired 
 	TbUserRepository tbUserRepository;
