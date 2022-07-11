@@ -21,14 +21,13 @@ public class TbFaculty {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "faculty_id")
 	private long facultyId;
-	
+
 	@Column(name = "faculty_name")
 	private String facultyName;
-	
-	
+
 	@Column(name = "created_at")
 	private LocalDateTime createdAt;
-	
+
 	@Column(name = "updated_at")
-	private LocalDateTime updatedAt;
+	private LocalDateTime updateAt;
 }

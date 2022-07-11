@@ -35,11 +35,9 @@ public class TbUserBusiness {
 		 
 	}
 	
-	public TbUser deleteUser(TbUser user) throws UserException{
-		
- 
-		return userService.deleteUser(user);
-		 
+	public void deleteUser(long userId) throws UserException{
+		userService.deleteUser(userId);
+ 		 
 	}
 
 }

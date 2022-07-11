@@ -27,10 +27,9 @@ public class TbUserService {
 		return userRepository.save(user);
 	}
 	
-	public TbUser deleteUser(TbUser user) {
-		userRepository.delete(user);
-		return user;
- 	}
+	public void deleteUser(long user) {
+		userRepository.deleteById(user);
+  	}
 	
 	public TbUser setUser(UserPayload userPayload, TbUser tbUser) {
 		

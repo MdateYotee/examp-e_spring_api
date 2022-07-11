@@ -18,23 +18,23 @@ public class TbUser {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private long id;
-	
+
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "tb_faculty")
+	@JoinColumn(name = "faculty_id")
 	private TbFaculty tbFaculty;
-	
+
 	@Column(name = "username")
 	private String username;
-	
+
 	@Column(name = "password")
 	private String password;
-	
+
 	@Column(name = "details")
 	private String details;
-	
+
 	@Column(name = "created_at")
 	private LocalDateTime createdAt;
-	
+
 	@Column(name = "updated_at")
 	private LocalDateTime updatedAt;
 }
