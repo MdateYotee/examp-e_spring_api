@@ -15,13 +15,13 @@ public class UserException extends BaseException {
         return new UserException("FacultyIdNull",HttpStatus.EXPECTATION_FAILED);
     }
     public static UserException userIsUsernameNull() {
-        return new UserException("FacultyIdNull",HttpStatus.EXPECTATION_FAILED);
+        return new UserException("UsernameNull",HttpStatus.EXPECTATION_FAILED);
     }
     public static UserException userIsPasswordNull() {
-        return new UserException("FacultyIdNull",HttpStatus.EXPECTATION_FAILED);
+        return new UserException("PasswordNull",HttpStatus.EXPECTATION_FAILED);
     }
     public static UserException userIsDetailNull() {
-        return new UserException("FacultyIdNull",HttpStatus.EXPECTATION_FAILED);
+        return new UserException("DetailNull",HttpStatus.EXPECTATION_FAILED);
     }
     
 }

@@ -22,7 +22,7 @@ import com.example.users.repository.TbUserRepository;
 
 
 @Controller 
-@RequestMapping("/user") 
+@RequestMapping("/") 
 public class TbUserController {
 	@Autowired 
 	TbUserRepository tbUserRepository;
@@ -30,9 +30,9 @@ public class TbUserController {
 	@Autowired
 	TbUserBusiness userBusiness;
 	
-	@GetMapping(path="/")
+	@GetMapping("/")
     public ResponseEntity<TbUserJson> user() throws UserException {
-		TbUserJson user = new TbUserJson();
+ 		TbUserJson user = new TbUserJson();
 	
         return ResponseEntity.ok(user);
     }
