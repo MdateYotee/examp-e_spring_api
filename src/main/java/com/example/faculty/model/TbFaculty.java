@@ -1,6 +1,7 @@
 package com.example.faculty.model;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -22,6 +23,9 @@ public class TbFaculty {
 	@Column(name = "faculty_id")
 	private long facultyId;
 
+	@Column(name = "faculty_uuid")
+	private String facultyUuid = UUID.randomUUID().toString();
+
 	@Column(name = "faculty_name")
 	private String facultyName;
 
@@ -29,5 +33,5 @@ public class TbFaculty {
 	private LocalDateTime createdAt;
 
 	@Column(name = "updated_at")
-	private LocalDateTime updateAt;
+	private LocalDateTime updatedAt;
 }

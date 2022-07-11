@@ -35,8 +35,8 @@ public class TbUserBusiness {
 		 
 	}
 	
-	public void deleteUser(long userId) throws UserException{
-		userService.deleteUser(userId);
+	public void deleteUser(String userUUID) throws UserException{
+		userService.deleteUser(userUUID);
  		 
 	}
 

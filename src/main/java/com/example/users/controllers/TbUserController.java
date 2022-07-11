@@ -61,7 +61,7 @@ public class TbUserController {
 	}
 
 	@DeleteMapping("/deleteuser/{userId}")
-	public ResponseEntity<Void> deleteuser(@PathVariable long userId) throws UserException {
+	public ResponseEntity<Void> deleteuser(@PathVariable String userId) throws UserException {
 
 		userBusiness.deleteUser(userId);
 

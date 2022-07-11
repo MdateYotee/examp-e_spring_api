@@ -27,14 +27,15 @@ public class TbUserService {
 		return userRepository.save(user);
 	}
 	
-	public void deleteUser(long user) {
-		userRepository.deleteById(user);
+	public void deleteUser(String userUUID) {
+		TbUser tbUser = userRepository.findByUserUuid(userUUID);
+		 userRepository.delete(tbUser);
   	}
 	
 	public TbUser setUser(UserPayload userPayload, TbUser tbUser) {
 		
 		if(Objects.nonNull(userPayload.getUserId())) {
-			tbUser.setId(userPayload.getUserId());
+			tbUser.setUserId(userPayload.getUserId());
 		}
 		
 		if(Objects.nonNull(userPayload.getFacultyId())) {
@@ -43,15 +44,15 @@ public class TbUserService {
 		}
 		
 		if(Objects.nonNull(userPayload.getUsername())) {
-			tbUser.setUsername(userPayload.getUsername());
+			tbUser.setUserUsername(userPayload.getUsername());
 		}
 		
 		if(Objects.nonNull(userPayload.getPassword())) {
-			tbUser.setPassword(userPayload.getPassword());
+			tbUser.setUserPassword(userPayload.getPassword());
 		}
 		
 		if(Objects.nonNull(userPayload.getDetail())) {
-			tbUser.setDetails(userPayload.getDetail());
+			tbUser.setUserDetails(userPayload.getDetail());
 		}
 		
 		return tbUser;

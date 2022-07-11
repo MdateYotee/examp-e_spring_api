@@ -6,5 +6,8 @@ import com.example.users.model.TbUser;
 
 
 public interface TbUserRepository extends JpaRepository<TbUser, Long>{
+	TbUser findByUserUuid(String userUuid);
+
+
 
 }
