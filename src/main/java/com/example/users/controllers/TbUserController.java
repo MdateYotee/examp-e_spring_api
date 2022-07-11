@@ -17,9 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.users.business.TbUserBusiness;
+import com.example.users.dto.UserDetailJson;
 import com.example.users.exception.UserException;
-import com.example.users.json.TbUserJson;
-import com.example.users.model.TbUser;
 import com.example.users.payload.UserPayload;
 
 @Controller
@@ -30,15 +29,15 @@ public class TbUserController {
 
 
 	@GetMapping(path = "/list")
-	public @ResponseBody List<TbUser> userList() throws UserException {
-		List<TbUser> userList = userBusiness.findUserAll();
+	public @ResponseBody List<UserDetailJson> userList() throws UserException {
+		List<UserDetailJson> userList = userBusiness.findUserAll();
 
 		return userList;
 	}
 	
 	@GetMapping(path = "/list/{userUUID}")
-	public @ResponseBody ResponseEntity<TbUser> getuserById(@PathVariable String userUUID) throws UserException {
- 		TbUser tbUser = userBusiness.findUserByUUID(userUUID);
+	public @ResponseBody ResponseEntity<UserDetailJson> getuserById(@PathVariable String userUUID) throws UserException {
+		UserDetailJson tbUser = userBusiness.findUserByUUID(userUUID);
  		 return ResponseEntity.ok(tbUser);
 	}
 

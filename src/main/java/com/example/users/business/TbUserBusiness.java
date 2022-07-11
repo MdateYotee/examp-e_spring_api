@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.users.dto.UserDetailJson;
 import com.example.users.exception.UserException;
 import com.example.users.model.TbUser;
 import com.example.users.payload.UserPayload;
@@ -18,14 +19,14 @@ public class TbUserBusiness {
 	@Autowired
 	TbUserService userService;
 	
-	public TbUser findUserByUUID(String userUUID) {
-		
-		return userService.findUserByUUID(userUUID);
+	public UserDetailJson findUserByUUID(String userUUID) {
+
+		return UserDetailJson.packUserJson(userService.findUserByUUID(userUUID));
 	}
 	
-	public List<TbUser> findUserAll() {
+	public List<UserDetailJson> findUserAll() {
 		
-		return userService.findAll();
+		return UserDetailJson.packUserJsonList(userService.findAll());
 	}
 
 	public TbUser addUser(UserPayload userPayload) throws UserException {
