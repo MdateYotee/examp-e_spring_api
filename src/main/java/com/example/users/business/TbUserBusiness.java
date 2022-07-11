@@ -1,5 +1,7 @@
 package com.example.users.business;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,28 +18,38 @@ public class TbUserBusiness {
 	@Autowired
 	TbUserService userService;
 	
-	public TbUser addUser(UserPayload userPayload) throws UserException{
+	public TbUser findUserByUUID(String userUUID) {
 		
-		 userService.checkNullUser(userPayload);
-		 TbUser user = userService.setUser(userPayload, new TbUser());
-		 
-		return userService.addUser(user);
-		 
+		return userService.findUserByUUID(userUUID);
+	}
+	
+	public List<TbUser> findUserAll() {
+		
+		return userService.findAll();
 	}
 
-	
-	public TbUser updateUser(UserPayload userPayload) throws UserException{
-		
-		 userService.checkNullUser(userPayload);
-		 TbUser user = userService.setUser(userPayload, new TbUser());
-		 
+	public TbUser addUser(UserPayload userPayload) throws UserException {
+
+		userService.checkNullUser(userPayload);
+		TbUser user = userService.packUser(userPayload, new TbUser());
+
 		return userService.addUser(user);
-		 
+
 	}
-	
-	public void deleteUser(String userUUID) throws UserException{
+
+	public TbUser updateUser(UserPayload userPayload) throws UserException {
+
+		userService.checkNullUser(userPayload);
+		TbUser users = userService.findUserByUUID(userPayload.getUserUuid());
+		TbUser user = userService.packUser(userPayload, users);
+
+		return userService.addUser(user);
+
+	}
+
+	public void deleteUser(String userUUID) throws UserException {
 		userService.deleteUser(userUUID);
- 		 
+
 	}
 
 }

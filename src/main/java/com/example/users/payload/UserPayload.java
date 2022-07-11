@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class UserPayload {
-	private long userId;
+	private String userUuid;
 	private long facultyId;
 	private String username;
 	private String password;

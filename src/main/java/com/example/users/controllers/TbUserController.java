@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -18,30 +19,27 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.example.users.business.TbUserBusiness;
 import com.example.users.exception.UserException;
 import com.example.users.json.TbUserJson;
+import com.example.users.model.TbUser;
 import com.example.users.payload.UserPayload;
-import com.example.users.repository.TbUserRepository;
 
 @Controller
 @RequestMapping("/user")
 public class TbUserController {
 	@Autowired
-	TbUserRepository tbUserRepository;
-
-	@Autowired
 	TbUserBusiness userBusiness;
 
-	@GetMapping("/")
-	public ResponseEntity<TbUserJson> user() throws UserException {
-		TbUserJson user = new TbUserJson();
-
-		return ResponseEntity.ok(user);
-	}
 
 	@GetMapping(path = "/list")
-	public @ResponseBody List<TbUserJson> userList() throws UserException {
-		List<TbUserJson> userList = new ArrayList<TbUserJson>();
+	public @ResponseBody List<TbUser> userList() throws UserException {
+		List<TbUser> userList = userBusiness.findUserAll();
 
 		return userList;
+	}
+	
+	@GetMapping(path = "/list/{userUUID}")
+	public @ResponseBody ResponseEntity<TbUser> getuserById(@PathVariable String userUUID) throws UserException {
+ 		TbUser tbUser = userBusiness.findUserByUUID(userUUID);
+ 		 return ResponseEntity.ok(tbUser);
 	}
 
 	@PostMapping("/adduser")
@@ -49,15 +47,15 @@ public class TbUserController {
 
 		userBusiness.addUser(userPayload);
 
-		return ResponseEntity.ok().build();
+		 return new ResponseEntity<>(HttpStatus.CREATED);
 	}
 
 	@PutMapping("/updateuser")
 	public ResponseEntity<Void> updateuser(@RequestBody UserPayload userPayload) throws UserException {
 
-		userBusiness.addUser(userPayload);
+		userBusiness.updateUser(userPayload);
 
-		return ResponseEntity.ok().build();
+		 return new ResponseEntity<>(HttpStatus.CREATED);
 	}
 
 	@DeleteMapping("/deleteuser/{userId}")
@@ -65,7 +63,7 @@ public class TbUserController {
 
 		userBusiness.deleteUser(userId);
 
-		return ResponseEntity.ok().build();
+		 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 
 }
